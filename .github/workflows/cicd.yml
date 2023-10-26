@@ -96,3 +96,10 @@ jobs:
       ports:
         - 80
       options: --cpus 1
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v3
+
+      # Description
+      - name: Description
+        run: (echo Autocloud IAC Step)
