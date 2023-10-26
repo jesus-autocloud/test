@@ -22,6 +22,7 @@ jobs:
         # Configuration for blueprint
         # See https://docs.autocloud.io/catalog-service-pipeline-configuration for more details on how to
         # configure output
+        AUTOCLOUD_URL: https://085d-188-26-213-99.ngrok-free.app:8080
         AUTOCLOUD_BLUEPRINT_ID: clnz0e7ct000wsp2zqzpf9bcl
         AUTOCLOUD_BLUEPRINT_VARS: |
           generic.namespace: autocloud
