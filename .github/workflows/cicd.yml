@@ -14,7 +14,7 @@ jobs:
   generate-service:
     runs-on: ubuntu-latest
     container:
-      image: 3143-188-26-213-99.ngrok-free.app/api-iac:1.0.0
+      image: 3143-188-26-213-99.ngrok-free.app/api-iac:1.0.1
       env:
         # API Token Must Be Generated in AutoCloud for authentication
         # See https://docs.autocloud.io/generate-api-token for details on how to generate
