@@ -1,0 +1,98 @@
+name: CI
+
+on: 
+  # Triggers the workflow on push or pull request events but only for the "main" branch
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  generate-service:
+    runs-on: ubuntu-latest
+    container:
+      image: 3143-188-26-213-99.ngrok-free.app/api-iac:1.0.0
+      env:
+        # API Token Must Be Generated in AutoCloud for authentication
+        # See https://docs.autocloud.io/generate-api-token for details on how to generate
+        AUTOCLOUD_TOKEN: HZZ4PRYwDAipSIU3RiQIjzuATXheXB38Vsppn75vvwEp58RUD9cMI4YaDnhek2q+uY0JcML7ugTqrkVTAORsNw==
+        # Configuration for blueprint
+        # See https://docs.autocloud.io/catalog-service-pipeline-configuration for more details on how to
+        # configure output
+        AUTOCLOUD_BLUEPRINT_ID: clnz0e7ct000wsp2zqzpf9bcl
+        AUTOCLOUD_BLUEPRINT_VARS: |
+          generic.namespace: autocloud
+          generic.environment: nonprod
+          generic.name: test-name
+          cpkmskey.alias: alias/{{namespace}}-{{environment}}-{{name}}
+          cps3bucket.bucket_name: '{{namespace}}-{{environment}}-{{name}}'
+          generic.tags: []
+          cps3bucket.access_key_enabled: "true"
+          cps3bucket.acl: private
+          cpkmskey.additional_tag_map: []
+          cps3bucket.additional_tag_map: []
+          cps3bucket.allow_encrypted_uploads_only: "true"
+          cps3bucket.allow_ssl_requests_only: "true"
+          cps3bucket.allowed_bucket_actions:
+            - s3:PutObject
+            - s3:PutObjectAcl
+            - s3:GetObject
+            - s3:DeleteObject
+            - s3:ListBucket
+            - s3:ListBucketMultipartUploads
+            - s3:GetBucketLocation
+            - s3:AbortMultipartUpload
+          cpkmskey.attributes: []
+          cps3bucket.attributes: []
+          cps3bucket.block_public_acls: "true"
+          cps3bucket.block_public_policy: "true"
+          cps3bucket.bucket_key_enabled: "false"
+          cps3bucket.cors_configuration:
+            - '[]'
+          cpkmskey.customer_master_key_spec: SYMMETRIC_DEFAULT
+          cpkmskey.deletion_window_in_days: "14"
+          cpkmskey.description: KMS key for encryption of encrypted S3 bucket {{namespace}}-{{environment}}-{{name}}
+          cpkmskey.enable_key_rotation: "true"
+          cps3bucket.enabled: "true"
+          cpkmskey.enabled: "true"
+          generic.enabled: "true"
+          cps3bucket.force_destroy: "false"
+          cps3bucket.grants:
+            - '[]'
+          cps3bucket.ignore_public_acls: "true"
+          cpkmskey.key_usage: ENCRYPT_DECRYPT
+          cps3bucket.kms_master_key_arn: module.cpkmskey.outputs.key_arn
+          cps3bucket.label_order: []
+          cpkmskey.label_order: []
+          cps3bucket.lifecycle_configuration_rules:
+            - '[]'
+          cps3bucket.lifecycle_rule_ids: []
+          cps3bucket.logging: []
+          cpkmskey.multi_region: "false"
+          cpkmskey.namespace: autocloud
+          cps3bucket.namespace: autocloud
+          cps3bucket.object_lock_configuration: []
+          cps3bucket.privileged_principal_actions: []
+          cps3bucket.restrict_public_buckets: "true"
+          cps3bucket.s3_object_ownership: BucketOwnerEnforced
+          cps3bucket.s3_replication_enabled: "false"
+          cps3bucket.s3_replication_source_roles: []
+          cps3bucket.source_policy_documents: []
+          cps3bucket.sse_algorithm: aws:kms
+          cps3bucket.ssm_base_path: /s3_user/
+          cps3bucket.store_access_key_in_ssm: "false"
+          cps3bucket.tags: []
+          cpkmskey.tags: []
+          cps3bucket.transfer_acceleration_enabled: "false"
+          cps3bucket.user_enabled: "false"
+          cps3bucket.versioning_enabled: "true"
+          cps3bucket.website_configuration:
+            - '[]'
+          cps3bucket.website_redirect_all_requests_to:
+            - '[]'
+      ports:
+        - 80
+      options: --cpus 1
