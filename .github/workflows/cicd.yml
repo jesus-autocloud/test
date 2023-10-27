@@ -34,7 +34,7 @@ jobs:
           cpkmskey.attributes: []
           cpkmskey.context: {"additional_tag_map":{},"attributes":[],"delimiter":null,"descriptor_formats":{},"enabled":true,"environment":null,"id_length_limit":null,"label_key_case":null,"label_order":[],"label_value_case":null,"labels_as_tags":["unset"],"name":null,"namespace":null,"regex_replace_chars":null,"stage":null,"tags":{},"tenant":null}
           cpkmskey.customer_master_key_spec: "SYMMETRIC_DEFAULT"
-          cpkmskey.deletion_window_in_days: 14
+          cpkmskey.deletion_window_in_days: 16
           cpkmskey.delimiter: null
           cpkmskey.description: "KMS key for encryption of encrypted S3 bucket {{namespace}}-{{environment}}-{{name}}"
           cpkmskey.descriptor_formats: {}
