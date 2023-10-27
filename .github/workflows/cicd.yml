@@ -1,11 +1,11 @@
 name: CI
 
-on: 
+on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: ['main']
   pull_request:
-    branches: [ "main" ]
+    branches: ['main']
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -14,86 +14,105 @@ jobs:
   generate-service:
     runs-on: ubuntu-latest
     container:
-      image: 3143-188-26-213-99.ngrok-free.app/api-iac:1.0.2
+      image: 3143-188-26-213-99.ngrok-free.app/api-iac:1.0.3
       env:
+        AUTOCLOUD_API_URL: https://085d-188-26-213-99.ngrok-free.app
         # API Token Must Be Generated in AutoCloud for authentication
         # See https://docs.autocloud.io/generate-api-token for details on how to generate
         AUTOCLOUD_TOKEN: HZZ4PRYwDAipSIU3RiQIjzuATXheXB38Vsppn75vvwEp58RUD9cMI4YaDnhek2q+uY0JcML7ugTqrkVTAORsNw==
         # Configuration for blueprint
-        # See https://docs.autocloud.io/catalog-service-pipeline-configuration for more details on how to
-        # configure output
-        AUTOCLOUD_URL: https://085d-188-26-213-99.ngrok-free.app
-        AUTOCLOUD_BLUEPRINT_ID: clnz0e7ct000wsp2zqzpf9bcl
-        AUTOCLOUD_BLUEPRINT_VARS: |
-          generic.namespace: autocloud
-          generic.environment: nonprod
-          generic.name: test-name
-          cpkmskey.alias: alias/{{namespace}}-{{environment}}-{{name}}
-          cps3bucket.bucket_name: '{{namespace}}-{{environment}}-{{name}}'
-          generic.tags: []
-          cps3bucket.access_key_enabled: "true"
-          cps3bucket.acl: private
-          cpkmskey.additional_tag_map: []
-          cps3bucket.additional_tag_map: []
-          cps3bucket.allow_encrypted_uploads_only: "true"
-          cps3bucket.allow_ssl_requests_only: "true"
-          cps3bucket.allowed_bucket_actions:
-            - s3:PutObject
-            - s3:PutObjectAcl
-            - s3:GetObject
-            - s3:DeleteObject
-            - s3:ListBucket
-            - s3:ListBucketMultipartUploads
-            - s3:GetBucketLocation
-            - s3:AbortMultipartUpload
+        # See https://docs.autocloud.io/catalog-service-pipeline-configuration for more details on how to configure output
+        AUTOCLOUD_BLUEPRINT_ID: clo8y8eu30000spye9fyn13sz
+        AUTOCLOUD_BLUEPRINT_VARS:  |
+          generic.namespace: "autocloud"
+          generic.environment: "nonprod"
+          generic.name: ''
+          cpkmskey.alias: "alias/{{namespace}}-{{environment}}-{{name}}"
+          cps3bucket.bucket_name: "{{namespace}}-{{environment}}-{{name}}"
+          generic.tags: {}
+          cpkmskey.additional_tag_map: {}
           cpkmskey.attributes: []
+          cpkmskey.context: {"additional_tag_map":{},"attributes":[],"delimiter":null,"descriptor_formats":{},"enabled":true,"environment":null,"id_length_limit":null,"label_key_case":null,"label_order":[],"label_value_case":null,"labels_as_tags":["unset"],"name":null,"namespace":null,"regex_replace_chars":null,"stage":null,"tags":{},"tenant":null}
+          cpkmskey.customer_master_key_spec: "SYMMETRIC_DEFAULT"
+          cpkmskey.deletion_window_in_days: 14
+          cpkmskey.delimiter: null
+          cpkmskey.description: "KMS key for encryption of encrypted S3 bucket {{namespace}}-{{environment}}-{{name}}"
+          cpkmskey.descriptor_formats: {}
+          cpkmskey.enable_key_rotation: true
+          cpkmskey.enabled: null
+          cpkmskey.environment: data_autocloud_blueprint_config.generic.environment
+          cpkmskey.id_length_limit: null
+          cpkmskey.key_usage: "ENCRYPT_DECRYPT"
+          cpkmskey.label_key_case: null
+          cpkmskey.label_order: null
+          cpkmskey.label_value_case: null
+          cpkmskey.labels_as_tags: ["default"]
+          cpkmskey.multi_region: false
+          cpkmskey.name: data_autocloud_blueprint_config.generic.name
+          cpkmskey.namespace: data_autocloud_blueprint_config.generic.namespace
+          cpkmskey.policy: ""
+          cpkmskey.regex_replace_chars: null
+          cpkmskey.stage: null
+          cpkmskey.tags: data_autocloud_blueprint_config.generic.tags
+          cpkmskey.tenant: null
+          cps3bucket.access_key_enabled: true
+          cps3bucket.acl: "private"
+          cps3bucket.additional_tag_map: {}
+          cps3bucket.allow_encrypted_uploads_only: true
+          cps3bucket.allow_ssl_requests_only: true
+          cps3bucket.allowed_bucket_actions: ["s3:PutObject","s3:PutObjectAcl","s3:GetObject","s3:DeleteObject","s3:ListBucket","s3:ListBucketMultipartUploads","s3:GetBucketLocation","s3:AbortMultipartUpload"]
           cps3bucket.attributes: []
-          cps3bucket.block_public_acls: "true"
-          cps3bucket.block_public_policy: "true"
-          cps3bucket.bucket_key_enabled: "false"
-          cps3bucket.cors_configuration:
-            - '[]'
-          cpkmskey.customer_master_key_spec: SYMMETRIC_DEFAULT
-          cpkmskey.deletion_window_in_days: "14"
-          cpkmskey.description: KMS key for encryption of encrypted S3 bucket {{namespace}}-{{environment}}-{{name}}
-          cpkmskey.enable_key_rotation: "true"
-          cps3bucket.enabled: "true"
-          cpkmskey.enabled: "true"
-          generic.enabled: "true"
-          cps3bucket.force_destroy: "false"
-          cps3bucket.grants:
-            - '[]'
-          cps3bucket.ignore_public_acls: "true"
-          cpkmskey.key_usage: ENCRYPT_DECRYPT
+          cps3bucket.block_public_acls: true
+          cps3bucket.block_public_policy: true
+          cps3bucket.bucket_key_enabled: false
+          cps3bucket.context: {"additional_tag_map":{},"attributes":[],"delimiter":null,"descriptor_formats":{},"enabled":true,"environment":null,"id_length_limit":null,"label_key_case":null,"label_order":[],"label_value_case":null,"labels_as_tags":["unset"],"name":null,"namespace":null,"regex_replace_chars":null,"stage":null,"tags":{},"tenant":null}
+          cps3bucket.cors_configuration: []
+          cps3bucket.delimiter: null
+          cps3bucket.descriptor_formats: {}
+          cps3bucket.enabled: null
+          cps3bucket.environment: data_autocloud_blueprint_config.generic.environment
+          cps3bucket.force_destroy: false
+          cps3bucket.grants: []
+          cps3bucket.id_length_limit: null
+          cps3bucket.ignore_public_acls: true
           cps3bucket.kms_master_key_arn: module.cpkmskey.outputs.key_arn
-          cps3bucket.label_order: []
-          cpkmskey.label_order: []
-          cps3bucket.lifecycle_configuration_rules:
-            - '[]'
+          cps3bucket.label_key_case: null
+          cps3bucket.label_order: null
+          cps3bucket.label_value_case: null
+          cps3bucket.labels_as_tags: ["default"]
+          cps3bucket.lifecycle_configuration_rules: []
           cps3bucket.lifecycle_rule_ids: []
-          cps3bucket.logging: []
-          cpkmskey.multi_region: "false"
-          cpkmskey.namespace: autocloud
-          cps3bucket.namespace: autocloud
-          cps3bucket.object_lock_configuration: []
+          cps3bucket.lifecycle_rules: null
+          cps3bucket.logging: null
+          cps3bucket.name: data_autocloud_blueprint_config.generic.name
+          cps3bucket.namespace: data_autocloud_blueprint_config.generic.namespace
+          cps3bucket.object_lock_configuration: null
+          cps3bucket.policy: ""
           cps3bucket.privileged_principal_actions: []
-          cps3bucket.restrict_public_buckets: "true"
-          cps3bucket.s3_object_ownership: BucketOwnerEnforced
-          cps3bucket.s3_replication_enabled: "false"
+          cps3bucket.privileged_principal_arns: []
+          cps3bucket.regex_replace_chars: null
+          cps3bucket.replication_rules: null
+          cps3bucket.restrict_public_buckets: true
+          cps3bucket.s3_object_ownership: "BucketOwnerEnforced"
+          cps3bucket.s3_replica_bucket_arn: ""
+          cps3bucket.s3_replication_enabled: false
+          cps3bucket.s3_replication_permissions_boundary_arn: null
+          cps3bucket.s3_replication_rules: null
           cps3bucket.s3_replication_source_roles: []
           cps3bucket.source_policy_documents: []
-          cps3bucket.sse_algorithm: aws:kms
-          cps3bucket.ssm_base_path: /s3_user/
-          cps3bucket.store_access_key_in_ssm: "false"
-          cps3bucket.tags: []
-          cpkmskey.tags: []
-          cps3bucket.transfer_acceleration_enabled: "false"
-          cps3bucket.user_enabled: "false"
-          cps3bucket.versioning_enabled: "true"
-          cps3bucket.website_configuration:
-            - '[]'
-          cps3bucket.website_redirect_all_requests_to:
-            - '[]'
+          cps3bucket.sse_algorithm: "aws:kms"
+          cps3bucket.ssm_base_path: "/s3_user/"
+          cps3bucket.stage: null
+          cps3bucket.store_access_key_in_ssm: false
+          cps3bucket.tags: data_autocloud_blueprint_config.generic.tags
+          cps3bucket.tenant: null
+          cps3bucket.transfer_acceleration_enabled: false
+          cps3bucket.user_enabled: false
+          cps3bucket.user_permissions_boundary_arn: null
+          cps3bucket.versioning_enabled: true
+          cps3bucket.website_configuration: []
+          cps3bucket.website_redirect_all_requests_to: []
+          generic.enabled: true
       ports:
         - 80
       options: --cpus 1
@@ -101,12 +120,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v3
 
-      # Description
-      - name: Description
-        run: (echo Autocloud IAC Step)
-
       # entrypoint
       - name: Create a blueprint submission
         run: |
-          printenv
           sh /app/script.sh
