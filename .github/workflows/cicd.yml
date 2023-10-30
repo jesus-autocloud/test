@@ -14,12 +14,12 @@ jobs:
   generate-service:
     runs-on: ubuntu-latest
     container:
-      image: 3143-188-26-213-99.ngrok-free.app/api-iac:1.0.3
+      image: 756b-188-26-213-99.ngrok-free.app/api-iac:1.0.3
       env:
-        AUTOCLOUD_API_URL: https://085d-188-26-213-99.ngrok-free.app
+        AUTOCLOUD_API_URL: https://1595-188-26-213-99.ngrok-free.app
         # API Token Must Be Generated in AutoCloud for authentication
         # See https://docs.autocloud.io/generate-api-token for details on how to generate
-        AUTOCLOUD_TOKEN: HZZ4PRYwDAipSIU3RiQIjzuATXheXB38Vsppn75vvwEp58RUD9cMI4YaDnhek2q+uY0JcML7ugTqrkVTAORsNw==
+        AUTOCLOUD_TOKEN: $AUTOCLOUD_API_TOKEN
         # Configuration for blueprint
         # See https://docs.autocloud.io/catalog-service-pipeline-configuration for more details on how to configure output
         AUTOCLOUD_BLUEPRINT_ID: clo8y8eu30000spye9fyn13sz
