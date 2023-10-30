@@ -31,7 +31,7 @@ jobs:
           cps3bucket.block_public_acls: true
           cps3bucket.block_public_policy: true
           cps3bucket.bucket_name: null
-          cps3bucket.context: {"additional_tag_map":{},"attributes":[],"delimiter":null,"descriptor_formats":{},"enabled":true,"environment":null,"id_length_limit":null,"label_key_case":null,"label_order":[],"label_value_case":null,"labels_as_tags":["unset"],"name":null,"namespace":null,"regex_replace_chars":null,"stage":null,"tags":{},"tenant":null}
+          cps3bucket.context: {"additional_tag_map":{},"attributes":[],"descriptor_formats":{},"enabled":true,"label_order":[],"labels_as_tags":["unset"],"tags":{}}
           cps3bucket.delimiter: null
           cps3bucket.descriptor_formats: {}
           cps3bucket.enabled: null
