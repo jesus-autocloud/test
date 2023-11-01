@@ -62,5 +62,4 @@ jobs:
 
       # entrypoint
       - name: Create a blueprint submission
-        run: |
-          sh /app/script.sh
+        run: autocloud-submission
